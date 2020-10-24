@@ -2,7 +2,7 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/device.h>
-#include <asm/uaccess.h>
+#include <linux/uaccess.h>
 
 
 MODULE_LICENSE("GPL");
@@ -27,7 +27,7 @@ int my_open(struct inode *_inode, struct file *_file) { // Each time we open the
 /* Our custom read function  for file_operations --------------------- */
 ssize_t my_read(struct file *filp, char *buff, size_t length, loff_t *offp) {
 	ssize_t num_of_bytes;
-	int retval;
+
 	num_of_bytes = (str_len < length) ? str_len : length;
     
     if (num_of_bytes == 0) { // We check to see if there's anything to write to the user
